@@ -51,15 +51,22 @@ async function register(user) {
         }
 
         await db.execute(
-            `INSERT INTO \`user\`
-            (\`id\`, \`name\`, \`email\`, \`permission\`, \`username\`, \`password\`) 
-            VALUES 
-            (uuid(), 
-            '${user.name}',
-            '${user.email}', 
-            3,
-            '${user.username}',
-            '${user.password}');`
+            `INSERT INTO \`user\`(
+                \`id\`, 
+                \`name\`,
+                \`avatar\`,
+                \`email\`, 
+                \`permission\`, 
+                \`username\`, 
+                \`password\`) 
+            VALUES (
+                uuid(), 
+                '${user.name}',
+                'resources/default-avatar.png',
+                '${user.email}', 
+                3,
+                '${user.username}',
+                '${user.password}');`
         )
 
         return {

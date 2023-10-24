@@ -1,2 +1,10 @@
 ### Get public file
 GET http://localhost:3000/resources/default-avatar.png
+
+### Upload file single
+POST http://localhost:3000/image/http://localhost:3000/image/single
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMWU1YjIyLTU0NzYtMTFlZS1iNjEwLTA4OTc5OGQzIiwiaWF0IjoxNjk4MDczNDU5LCJleHAiOjE2OTgxNTk4NTl9.PcTTgCi34AbWCXBMHaZz66P30D71QOtSYDQBLj1CpOU
+
+### Upload file multiple
+POST http://localhost:3000/image/http://localhost:3000/image/multiple
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMWU1YjIyLTU0NzYtMTFlZS1iNjEwLTA4OTc5OGQzIiwiaWF0IjoxNjk4MDczNDU5LCJleHAiOjE2OTgxNTk4NTl9.PcTTgCi34AbWCXBMHaZz66P30D71QOtSYDQBLj1CpOU

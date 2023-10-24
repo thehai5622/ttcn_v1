@@ -1,0 +1,33 @@
+### Get list News
+GET http://localhost:3000/news?page=1
+
+### Get detail News
+GET http://localhost:3000/news/c2cbd774-715c-11ee-ae12-089798d3
+
+### Create News
+POST http://localhost:3000/news
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMWU1YjIyLTU0NzYtMTFlZS1iNjEwLTA4OTc5OGQzIiwiaWF0IjoxNjk4MDc2MzE3LCJleHAiOjE2OTgxNjI3MTd9.-u8iC0HBu4Wp07MAQ8a1Hu2LT-S1jDehsXY2sE4lyYQ
+
+{
+    "title": "Tiêu đề 5",
+    "description": "Mô tả 5",
+    "image": null,
+    "content": "Nội dung 5"
+}
+
+### Update news
+PUT http://localhost:3000/news/417180b9-7241-11ee-ae12-089798d3
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMWU1YjIyLTU0NzYtMTFlZS1iNjEwLTA4OTc5OGQzIiwiaWF0IjoxNjk4MDc2MzE3LCJleHAiOjE2OTgxNjI3MTd9.-u8iC0HBu4Wp07MAQ8a1Hu2LT-S1jDehsXY2sE4lyYQ
+
+{
+    "title": "Tiêu đề 4",
+    "description": "Mô tả 4",
+    "image": "resources/default-news.png",
+    "content": "Nội dung 4"
+}
+
+### Delete news
+DELETE http://localhost:3000/news/bd1817a8-724b-11ee-ae12-089798d3
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMWU1YjIyLTU0NzYtMTFlZS1iNjEwLTA4OTc5OGQzIiwiaWF0IjoxNjk4MDc2MzE3LCJleHAiOjE2OTgxNjI3MTd9.-u8iC0HBu4Wp07MAQ8a1Hu2LT-S1jDehsXY2sE4lyYQ
