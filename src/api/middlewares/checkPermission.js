@@ -1,5 +1,6 @@
 const db = require('../helpers/database')
 
+// User
 const checkMyAccount = async (req, res, next) => {
     try {
         if (req.payload.id != req.params.id) {
@@ -33,7 +34,28 @@ const checkDeleteUser = async (req, res, next) => {
     }
 }
 
+// News
+const checkPostNews = async (req, res, next) => {
+    try {
+        const [result] = await db.execute(
+            `SELECT permission
+            FROM \`user\`
+            WHERE \`id\` = '${req.payload.id}'`
+        )
+
+        if (result.permission === 3) {
+            err = new Error('Bạn không có quyền đăng Tin tức!')
+            err.statusCode = 401
+            next(err)
+        }
+        next()
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
     checkMyAccount,
-    checkDeleteUser
+    checkDeleteUser,
+    checkPostNews
 }

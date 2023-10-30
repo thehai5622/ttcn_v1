@@ -1,5 +1,5 @@
 ### Get list News
-GET http://localhost:3000/news?page=1&keyword=Nội dung 3
+GET http://localhost:3000/news?page=1
 
 ### Get detail News
 GET http://localhost:3000/news/c2cbd774-715c-11ee-ae12-089798d3

@@ -5,7 +5,13 @@ const { listPerPage } = require('../../config/config')
 async function getAdvise(page) {
     try {
         const resutl = await db.execute(
-            `SELECT * FROM \`advise\`
+            `SELECT
+                \`id\`,
+                \`is_readed\`,
+                \`name\`,
+                \`phone\`,
+                \`create_at\`
+            FROM \`advise\`
             ORDER BY \`advise\`.\`create_at\` DESC`
         )
 

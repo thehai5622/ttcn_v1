@@ -14,13 +14,13 @@ async function getNews(page, keyword) {
                 \`news\`.\`image\`,
                 \`user\`.name AS author
             FROM \`news\`
-            LEFT JOIN \`user\` ON \`news\`.\`user_id\` = \`user\`.\`id\``
-            + `WHERE 
-                \`news\`.\`id\` LIKE '%${keyword}%' OR
-                \`news\`.\`title\` LIKE '%${keyword}%' OR
-                \`news\`.\`description\` LIKE '%${keyword}%' OR
-                \`news\`.\`content\` LIKE '%${keyword}%'` +
-            `ORDER BY \`news\`.\`create_at\` DESC
+            LEFT JOIN \`user\` ON \`news\`.\`user_id\` = \`user\`.\`id\`
+            WHERE 
+                \`news\`.\`id\` LIKE '%${keyword ?? ''}%' OR
+                \`news\`.\`title\` LIKE '%${keyword ?? ''}%' OR
+                \`news\`.\`description\` LIKE '%${keyword ?? ''}%' OR
+                \`news\`.\`content\` LIKE '%${keyword ?? ''}%'
+            ORDER BY \`news\`.\`create_at\` DESC
             LIMIT ${offset}, ${listPerPage}`,
             `SELECT count(*) AS total FROM news`
         ])
