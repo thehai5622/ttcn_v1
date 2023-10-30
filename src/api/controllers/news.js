@@ -2,7 +2,7 @@ const db = require('../helpers/database')
 const helper = require('../helpers/helper')
 const { listPerPage } = require('../../config/config')
 
-async function getNews(page) {
+async function getNews(page, keyword) {
     try {
         const offset = helper.getOffset(page, listPerPage)
 
@@ -14,8 +14,13 @@ async function getNews(page) {
                 \`news\`.\`image\`,
                 \`user\`.name AS author
             FROM \`news\`
-            LEFT JOIN \`user\` ON \`news\`.\`user_id\` = \`user\`.\`id\`
-            ORDER BY \`news\`.\`create_at\` DESC
+            LEFT JOIN \`user\` ON \`news\`.\`user_id\` = \`user\`.\`id\``
+            + `WHERE 
+                \`news\`.\`id\` LIKE '%${keyword}%' OR
+                \`news\`.\`title\` LIKE '%${keyword}%' OR
+                \`news\`.\`description\` LIKE '%${keyword}%' OR
+                \`news\`.\`content\` LIKE '%${keyword}%'` +
+            `ORDER BY \`news\`.\`create_at\` DESC
             LIMIT ${offset}, ${listPerPage}`,
             `SELECT count(*) AS total FROM news`
         ])
@@ -24,7 +29,7 @@ async function getNews(page) {
             code: 200,
             data: result[0] ?? null,
             meta: {
-                page: parseInt(page),
+                page: page == null ? 1 : parseInt(page),
                 total: result[1][0].total
             }
         }
@@ -34,7 +39,7 @@ async function getNews(page) {
 }
 async function getDetailNews(id) {
     try {
-        const data = await db.execute(
+        const [data] = await db.execute(
             `SELECT \`news\`.*, \`user\`.\`name\` AS author
             FROM \`news\`
             LEFT JOIN \`user\` ON \`news\`.\`user_id\` = \`user\`.\`id\`

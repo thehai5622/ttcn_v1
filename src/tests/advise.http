@@ -1,0 +1,13 @@
+### Get list advise
+GET http://localhost:3000/advise
+
+### Insert advise
+POST http://localhost:3000/advise
+Content-Type: application/json
+
+{
+    "test": "hehe"
+}
+
+### State change advise
+PUT http://localhost:3000/advise/ljlkdjf

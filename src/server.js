@@ -5,6 +5,7 @@ const { port, mySql } = require('./config/config')
 const userRouter = require('./api/routers/user')
 const imageRouter = require('./api/routers/image')
 const newsRouter = require('./api/routers/news')
+const adviseRouter = require('./api/routers/advise')
 
 app.use(express.json())
 app.use(
@@ -22,6 +23,7 @@ app.use('/resources', express.static(__dirname + '/resources'))
 app.use('/user', userRouter)
 app.use('/image', imageRouter)
 app.use('/news', newsRouter)
+app.use('/advise', adviseRouter)
 
 // Error
 app.use((err, req, res, next) => {

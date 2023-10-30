@@ -5,7 +5,7 @@ const { checkLogin } = require('../middlewares/checkLogin')
 
 router.get('/', async (req, res, next) => {
     try {
-        res.json(await controller.getNews(req.query.page))
+        res.json(await controller.getNews(req.query.page, req.query.keyword))
     } catch (error) {
         next(error)
     }
