@@ -10,17 +10,17 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.post('/', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
     try {
-        res.json(await controller.addAdvise(req.body))
+        res.json(await controller.getDetailAdvise(req.params.id))
     } catch (error) {
         next(error)
     }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     try {
-        res.json(await controller.statusChange(req.params.id))
+        res.json(await controller.createAdvise(req.body))
     } catch (error) {
         next(error)
     }

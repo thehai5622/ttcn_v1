@@ -1,13 +1,16 @@
 ### Get list advise
 GET http://localhost:3000/advise
 
+### Get detail advise
+GET http://localhost:3000/advise/b3882964-730d-11ee-ae12-089798d3
+
 ### Insert advise
 POST http://localhost:3000/advise
 Content-Type: application/json
 
 {
-    "test": "hehe"
+    "name": "Someone",
+    "phone": "0123456785",
+    "email": null,
+    "content": "Nội dung yêu cầu tư vấn"
 }
-
-### State change advise
-PUT http://localhost:3000/advise/ljlkdjf

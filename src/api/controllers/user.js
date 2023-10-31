@@ -1,6 +1,7 @@
 const db = require('../helpers/database')
 const { signToken } = require('../helpers/token')
 const { validateEmail } = require('../validations/validateEmail')
+const { validatePhone } = require('../validations/validatePhone')
 
 async function getDetailInfo(id) {
     try {
@@ -114,6 +115,11 @@ async function update(id, user) {
     try {
         if (user.name == null) {
             const error = new Error('Bạn cần có một cái tên!');
+            error.statusCode = 401;
+            throw error;
+        }
+        if (user.phone && !validatePhone(user.phone)) {
+            const error = new Error('Số điện thoại không đúng định dạng!');
             error.statusCode = 401;
             throw error;
         }
