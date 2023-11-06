@@ -83,7 +83,7 @@ async function login(user) {
     try {
         const [rows] = await db.execute(
             `SELECT  
-            id, name
+            id, name, avatar
             FROM \`user\` 
             WHERE \`username\` = '${user.username}'
             AND \`password\` = '${user.password}'`
@@ -103,6 +103,7 @@ async function login(user) {
             data: {
                 id: id,
                 name: rows.name,
+                avatar: rows.avatar,
                 token
             }
         };

@@ -14,6 +14,25 @@ const checkMyAccount = async (req, res, next) => {
     }
 }
 
+const checkAdmin = async (req, res, next) => {
+    try {
+        const [result] = await db.execute(
+            `SELECT permission
+            FROM \`user\`
+            WHERE \`id\` = '${req.payload.id}'`
+        )
+
+        if (result.permission !== 1) {
+            var err = new Error('Bạn không có quyền thực hiện thao tác này!')
+            err.statusCode = 401
+            next(err)
+        }
+        next()
+    } catch (error) {
+        next(error)
+    }
+}
+
 const checkDeleteUser = async (req, res, next) => {
     try {
         const [result] = await db.execute(
@@ -56,6 +75,7 @@ const checkPostNews = async (req, res, next) => {
 
 module.exports = {
     checkMyAccount,
+    checkAdmin,
     checkDeleteUser,
     checkPostNews
 }

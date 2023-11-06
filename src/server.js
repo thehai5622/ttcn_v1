@@ -6,6 +6,7 @@ const userRouter = require('./api/routers/user')
 const imageRouter = require('./api/routers/image')
 const newsRouter = require('./api/routers/news')
 const adviseRouter = require('./api/routers/advise')
+const fieldRouter = require('./api/routers/field')
 
 app.use(express.json())
 app.use(
@@ -24,6 +25,7 @@ app.use('/user', userRouter)
 app.use('/image', imageRouter)
 app.use('/news', newsRouter)
 app.use('/advise', adviseRouter)
+app.use('/field', fieldRouter)
 
 // Error
 app.use((err, req, res, next) => {

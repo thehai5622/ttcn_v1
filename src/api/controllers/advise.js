@@ -6,7 +6,9 @@ const { validatePhone } = require('../validations/validatePhone')
 
 async function getAdvise(page) {
     try {
-        const resutl = await db.execute(
+        const offset = helper.getOffset(page, listPerPage)
+
+        const resutlt = await db.queryMultiple([
             `SELECT
                 \`id\`,
                 \`is_readed\`,
@@ -14,12 +16,18 @@ async function getAdvise(page) {
                 \`phone\`,
                 \`create_at\`
             FROM \`advise\`
-            ORDER BY \`advise\`.\`create_at\` DESC`
-        )
+            ORDER BY \`advise\`.\`create_at\` DESC
+            LIMIT ${offset}, ${listPerPage}`,
+            `SELECT count(*) AS total FROM \`advise\``
+        ])
 
         return {
             code: 200,
-            data: resutl
+            data: resutlt[0],
+            meta: {
+                page: page == null ? 1 : parseInt(page),
+                total: resutlt[1][0].total
+            }
         }
     } catch (error) {
         throw (error)

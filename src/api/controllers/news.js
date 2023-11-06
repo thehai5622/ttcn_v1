@@ -27,7 +27,7 @@ async function getNews(page, keyword) {
 
         return {
             code: 200,
-            data: result[0] ?? null,
+            data: result[0],
             meta: {
                 page: page == null ? 1 : parseInt(page),
                 total: result[1][0].total
@@ -37,6 +37,7 @@ async function getNews(page, keyword) {
         throw (error)
     }
 }
+
 async function getDetailNews(id) {
     try {
         const [data] = await db.execute(
