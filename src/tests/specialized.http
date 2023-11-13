@@ -1,0 +1,28 @@
+### Get list specialized
+GET http://localhost:3000/specialized?keyword=Nông nghiệp&type=3
+
+### Create specialized
+POST http://localhost:3000/specialized
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI1YjMxOTBjLTUzOTctMTFlZS1iNjEwLTA4OTc5OGQzIiwiaWF0IjoxNjk5ODY1NjcyLCJleHAiOjE2OTk5NTIwNzJ9.KJdiQts7iyc1Uji0HpsFCKFRlmc6ltA42DW-mXJte64
+
+{
+    "field_id": "a011c9cb-7c88-11ee-b0fc-089798d3",
+    "type": 3,
+    "name": "Tên ngành nào đó"
+}
+
+### Update specialized
+PUT http://localhost:3000/specialized/731a0db1-7c85-11ee-b0fc-089798d3
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI1YjMxOTBjLTUzOTctMTFlZS1iNjEwLTA4OTc5OGQzIiwiaWF0IjoxNjk5ODY1NjcyLCJleHAiOjE2OTk5NTIwNzJ9.KJdiQts7iyc1Uji0HpsFCKFRlmc6ltA42DW-mXJte64
+
+{
+    "field_id": "a011c9cb-7c88-11ee-b0fc-089798d3",
+    "type": 3,
+    "name": "Tên đã sửa"
+}
+
+### Delete specialized
+DELETE http://localhost:3000/specialized/d4839d1d-7eb4-11ee-b0fc-089798d3
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI1YjMxOTBjLTUzOTctMTFlZS1iNjEwLTA4OTc5OGQzIiwiaWF0IjoxNjk5ODY1NjcyLCJleHAiOjE2OTk5NTIwNzJ9.KJdiQts7iyc1Uji0HpsFCKFRlmc6ltA42DW-mXJte64
