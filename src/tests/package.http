@@ -1,0 +1,24 @@
+### Get list package
+GET http://localhost:3000/package
+
+### Get list package
+GET http://localhost:3000/package/74c8329e-85e7-11ee-b0fc-089798d3
+
+### Post answer package
+POST http://localhost:3000/package/74c8329e-85e7-11ee-b0fc-089798d3
+Content-Type: application/json
+
+{
+    "most": {
+        "D": 11,
+        "I": 7,
+        "S": 9,
+        "C": 6
+    },
+    "least": {
+        "D": 1,
+        "I": 2,
+        "S": 3,
+        "C": 3
+    }
+}

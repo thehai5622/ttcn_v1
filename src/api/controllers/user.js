@@ -104,6 +104,7 @@ async function login(user) {
                 id: id,
                 name: rows.name,
                 avatar: rows.avatar,
+                permission: rows.permission,
                 token
             }
         };
