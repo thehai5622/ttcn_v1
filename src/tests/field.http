@@ -1,4 +1,7 @@
 ### Get list field
+GET http://localhost:3000/field
+
+### Get list field
 GET http://localhost:3000/field?keyword=Sư phạm kỹ thuật nông nghiệp
 
 ### Create field

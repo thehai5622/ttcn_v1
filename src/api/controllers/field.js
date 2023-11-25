@@ -11,6 +11,15 @@ async function getListField(keyword) {
             ORDER BY \`field\`.\`name\` ASC`
         )
 
+        for (let i = 0; i < result.length; i++) {
+            let specialized = await db.execute(
+                `SELECT id, type, name
+                FROM \`specialized\`
+                WHERE \`field_id\`='${result[i].id}'`
+            )
+            result[i].specialized = specialized
+        }
+
         return {
             code: 200,
             data: result
