@@ -20,7 +20,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/:id', async (req, res, next) => {
     try {
-        res.json(await controller.getResult(req.params.id, req.body))
+        res.json(await controller.getResult(req.params.id, req.body.answer))
     } catch (error) {
         next(error)
     }

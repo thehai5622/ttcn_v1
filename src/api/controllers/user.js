@@ -145,6 +145,29 @@ async function update(id, user) {
     }
 }
 
+async function changePassword(id, user) {
+    try {
+        if (user.password == null || user.password == '') {
+            const error = new Error('Mật khẩu không được để trống!');
+            error.statusCode = 401;
+            throw error;
+        }
+
+        await db.execute(
+            `UPDATE \`user\` 
+            SET \`password\`='${user.password}'
+            WHERE \`id\` = '${id}';`
+        )
+
+        return {
+            code: 200,
+            message: "Mật khẩu đã được thay đổi!"
+        }
+    } catch (error) {
+        throw (error)
+    }
+}
+
 async function deleteUser(id) {
     try {
         await db.execute(
@@ -166,5 +189,6 @@ module.exports = {
     register,
     login,
     update,
+    changePassword,
     deleteUser
 }

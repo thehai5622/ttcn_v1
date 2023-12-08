@@ -36,6 +36,14 @@ router.put('/:id', checkLogin, checkMyAccount, async (req, res, next) => {
     }
 })
 
+router.put('/change_password/:id', checkLogin, checkMyAccount, async (req, res, next) => {
+    try {
+        res.json(await controller.changePassword(req.params.id, req.body))
+    } catch (error) {
+        next(error)
+    }
+})
+
 router.delete('/:id', checkLogin, checkDeleteUser, async (req, res, next) => {
     try {
         res.json(await controller.deleteUser(req.params.id))

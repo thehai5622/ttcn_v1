@@ -1,4 +1,5 @@
 const db = require('../helpers/database')
+const getResultPackage = require('../helpers/result')
 
 async function getListPackage() {
     try {
@@ -42,12 +43,22 @@ async function getListQuestion(packageId) {
     }
 }
 
-async function getResult(packageId, result) {
+async function getResult(packageId, listAnswerId) {
     try {
+        let sql = []
+        for (let i = 0; i <listAnswerId.length; i++) {
+            sql.push(
+                `SELECT * 
+                FROM \`answer\` 
+                WHERE \`id\`='${listAnswerId[i]}'`
+            )
+        }
+        answer = await db.queryMultiple(sql)
+
         return {
             code: 200,
             package: packageId,
-            data: result
+            data: await getResultPackage(packageId, answer)
         }
     } catch (error) {
         throw (error)
