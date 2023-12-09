@@ -6,6 +6,28 @@ POST http://localhost:3000/user/register
 Content-Type: application/json
 
  {
+  "name": "Test",
+  "username": "test",
+  "password": "1234",
+  "email": "admin@gmail.com"
+ }
+
+ ### User: Register volunteers
+POST http://localhost:3000/user/register/volunteers
+Content-Type: application/json
+
+ {
+  "name": "Volunteers",
+  "username": "admin",
+  "password": "1234",
+  "email": "admin@gmail.com"
+ }
+
+ ### User: Register admin
+POST http://localhost:3000/user/register/admin
+Content-Type: application/json
+
+ {
   "name": "Admin",
   "username": "admin",
   "password": "1234",

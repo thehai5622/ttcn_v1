@@ -79,6 +79,120 @@ async function register(user) {
     }
 }
 
+async function registerVolunteers(user) {
+    try {
+        const [username, email] = await db.queryMultiple([
+            `SELECT username
+            FROM \`user\`
+            WHERE \`username\` = '${user.username}'`,
+            `SELECT email
+            FROM \`user\`
+            WHERE \`email\` = '${user.email}'`
+        ])
+
+        if (username[0] != null || user.username == '' || user.username == null) {
+            const msg = username[0] != null ? 'Tài khoản đã tồn tại!' : 'Tài khoản không được để trống!'
+            var err = new Error(msg)
+            err.statusCode = 401
+            throw (err)
+        }
+        if (email[0] != null || !validateEmail(user.email)) {
+            const msg = email[0] != null ? 'Email đã tồn tại!' : 'Email không hợp lệ!'
+            var err = new Error(msg)
+            err.statusCode = 401
+            throw (err)
+        }
+        if (user.name == '' || user.name == null) {
+            var err = new Error('Bạn cần có một cái tên!')
+            err.statusCode = 401
+            throw (err)
+        }
+
+        await db.execute(
+            `INSERT INTO \`user\`(
+                \`id\`, 
+                \`name\`,
+                \`avatar\`,
+                \`email\`, 
+                \`permission\`, 
+                \`username\`, 
+                \`password\`) 
+            VALUES (
+                uuid(), 
+                '${user.name}',
+                'resources/default-avatar.png',
+                '${user.email}', 
+                2,
+                '${user.username}',
+                '${user.password}');`
+        )
+
+        return {
+            code: 200,
+            message: 'Đăng ký tài khoản thành công!'
+        }
+    } catch (error) {
+        throw (error)
+    }
+}
+
+async function registerAdmin(user) {
+    try {
+        const [username, email] = await db.queryMultiple([
+            `SELECT username
+            FROM \`user\`
+            WHERE \`username\` = '${user.username}'`,
+            `SELECT email
+            FROM \`user\`
+            WHERE \`email\` = '${user.email}'`
+        ])
+
+        if (username[0] != null || user.username == '' || user.username == null) {
+            const msg = username[0] != null ? 'Tài khoản đã tồn tại!' : 'Tài khoản không được để trống!'
+            var err = new Error(msg)
+            err.statusCode = 401
+            throw (err)
+        }
+        if (email[0] != null || !validateEmail(user.email)) {
+            const msg = email[0] != null ? 'Email đã tồn tại!' : 'Email không hợp lệ!'
+            var err = new Error(msg)
+            err.statusCode = 401
+            throw (err)
+        }
+        if (user.name == '' || user.name == null) {
+            var err = new Error('Bạn cần có một cái tên!')
+            err.statusCode = 401
+            throw (err)
+        }
+
+        await db.execute(
+            `INSERT INTO \`user\`(
+                \`id\`, 
+                \`name\`,
+                \`avatar\`,
+                \`email\`, 
+                \`permission\`, 
+                \`username\`, 
+                \`password\`) 
+            VALUES (
+                uuid(), 
+                '${user.name}',
+                'resources/default-avatar.png',
+                '${user.email}', 
+                1,
+                '${user.username}',
+                '${user.password}');`
+        )
+
+        return {
+            code: 200,
+            message: 'Đăng ký tài khoản thành công!'
+        }
+    } catch (error) {
+        throw (error)
+    }
+}
+
 async function login(user) {
     try {
         const [rows] = await db.execute(
@@ -187,6 +301,8 @@ async function deleteUser(id) {
 module.exports = {
     getDetailInfo,
     register,
+    registerVolunteers,
+    registerAdmin,
     login,
     update,
     changePassword,
