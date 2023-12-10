@@ -81,23 +81,23 @@ async function getResultPackage(packageId, answer) {
             }
             let idPersonality = `${baseDISC[top2Most[0]]}${baseDISC[top2Most[1]]}`
             switch (idPersonality) {
-                case '14':
-                    idPersonality = '41'
+                case 'DC':
+                    idPersonality = 'CD'
                     break
-                case '21':
-                    idPersonality = '12'
+                case 'ID':
+                    idPersonality = 'DI'
                     break
-                case '31':
-                    idPersonality = '13'
+                case 'SD':
+                    idPersonality = 'DS'
                     break
-                case '42':
-                    idPersonality = '24'
+                case 'CI':
+                    idPersonality = 'IC'
                     break
-                case '32':
-                    idPersonality = '23'
+                case 'SI':
+                    idPersonality = 'IS'
                     break
-                case '43':
-                    idPersonality = '34'
+                case 'CS':
+                    idPersonality = 'SC'
                     break
                 default:
                     break
@@ -113,6 +113,14 @@ async function getResultPackage(packageId, answer) {
                 INNER JOIN \`field\` ON \`field_personality\`.\`field_id\`=\`field\`.id
                 WHERE \`field_personality\`.\`personality_id\`='${idPersonality}'`
             )
+            for (let i = 0; i < rows.length; i++) {
+                const element = await db.execute(
+                    `SELECT id, type, name
+                    FROM \`specialized\`
+                    WHERE \`field_id\`='${rows[i].id}'`
+                );
+                rows[i].specialized = element
+            }
             result = element
             field = rows
             break
