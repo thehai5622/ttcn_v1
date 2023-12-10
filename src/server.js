@@ -9,6 +9,7 @@ const adviseRouter = require('./api/routers/advise')
 const fieldRouter = require('./api/routers/field')
 const specializedRouter = require('./api/routers/specialized')
 const packageRouter = require('./api/routers/package')
+const db = require('./api/helpers/database')
 
 app.use(express.json())
 app.use(
@@ -50,5 +51,6 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(port, () => {
+    db.execute('SET GLOBAL event_scheduler="ON"')
     console.log(`App listening at http://${mySql.host}:${port}`)
 })
