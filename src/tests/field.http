@@ -4,6 +4,9 @@ GET http://localhost:3000/field
 ### Get list field
 GET http://localhost:3000/field?keyword=Sư phạm kỹ thuật nông nghiệp
 
+### Get detail field
+GET http://localhost:3000/field/731a0db1-7c85-11ee-b0fc-089798d3
+
 ### Create field
 POST http://localhost:3000/field
 Content-Type: application/json

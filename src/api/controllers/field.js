@@ -29,6 +29,23 @@ async function getListField(keyword) {
     }
 }
 
+async function getDetailField(fieldId) {
+    try {
+        const [result] = await db.execute(
+            `SELECT *
+            FROM \`field\`
+            WHERE \`id\`='${fieldId}'`
+        )
+
+        return {
+            code: 200,
+            data: result ?? null
+        }
+    } catch (error) {
+        throw (error)
+    }
+}
+
 async function createField(field) {
     try {
         if (field.name == null || field.name == '') {
@@ -97,6 +114,7 @@ async function deleteField(fieldId) {
 
 module.exports = {
     getListField,
+    getDetailField,
     createField,
     updateField,
     deleteField

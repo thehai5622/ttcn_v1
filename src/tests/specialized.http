@@ -1,6 +1,9 @@
 ### Get list specialized
 GET http://localhost:3000/specialized?keyword=Nông nghiệp&type=3
 
+### Get detail specialized
+GET http://localhost:3000/specialized/731a0db1-7c85-11ee-b0fc-089798d3
+
 ### Create specialized
 POST http://localhost:3000/specialized
 Content-Type: application/json

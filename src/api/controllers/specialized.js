@@ -21,6 +21,23 @@ async function getListSpecialized(keyword, type) {
     }
 }
 
+async function getDetailSpecialized(specializedId) {
+    try {
+        const [result] = await db.execute(
+            `SELECT *
+            FROM \`specialized\`
+            WHERE \`id\`='${specializedId}'`
+        )
+
+        return {
+            code: 200,
+            data: result ?? null
+        }
+    } catch (error) {
+        throw (error)
+    }
+}
+
 async function createSpecialized(specialized) {
     try {
         if (specialized.field_id == null || specialized.field_id == '') {
@@ -118,6 +135,7 @@ async function deleteSpecialized(specializedId) {
 
 module.exports = {
     getListSpecialized,
+    getDetailSpecialized,
     createSpecialized,
     updateSpecialized,
     deleteSpecialized

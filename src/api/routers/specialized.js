@@ -12,6 +12,14 @@ router.get('/', async (req, res, next) => {
     }
 })
 
+router.get('/:id', async (req, res, next) => {
+    try {
+        res.json(await controller.getDetailSpecialized(req.params.id))
+    } catch (error) {
+        next(error)
+    }
+})
+
 router.post('/', checkLogin, checkAdmin, async (req, res, next) => {
     try {
         res.json(await controller.createSpecialized(req.body))
