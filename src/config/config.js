@@ -1,7 +1,7 @@
 module.exports = {
     port: 3000,
     mySql: {
-        host: "127.1.1.1",
+        host: "127.0.0.1",
         user: "root",
         password: "",
         database: "ttcn_v1",
