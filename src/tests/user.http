@@ -62,6 +62,7 @@ Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI1YjMxOTBjLTUzOTctMTFlZS1iNjEwLTA4OTc5OGQzIiwiaWF0IjoxNjk3Njg5NzQzLCJleHAiOjE2OTc3NzYxNDN9.8vMBwKihv_7BB57q-_RAdT6zLrkhofwZxdbNjkIuAWk
 
 {
+  "oldPassword": "1234",
   "password": "1234"
 }
 

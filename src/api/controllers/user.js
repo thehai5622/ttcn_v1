@@ -261,8 +261,27 @@ async function update(id, user) {
 
 async function changePassword(id, user) {
     try {
+        if (user.oldPassword == null || user.oldPassword == '') {
+            const error = new Error('Mật khẩu cũ là bắt buộc!');
+            error.statusCode = 401;
+            throw error;
+        }
+
         if (user.password == null || user.password == '') {
-            const error = new Error('Mật khẩu không được để trống!');
+            const error = new Error('Mật khẩu mới không được để trống!');
+            error.statusCode = 401;
+            throw error;
+        }
+
+        let [rows] = await db.execute(
+            `SELECT *
+            FROM \`user\`
+            WHERE \`id\`='${id}'
+            AND \`password\`='${user.oldPassword}'`
+        )
+
+        if (rows == null) {
+            const error = new Error('Mật khẩu cũ không chính xác!');
             error.statusCode = 401;
             throw error;
         }
